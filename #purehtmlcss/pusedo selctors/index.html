@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pusedo</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+
+        .main-div{
+            width:100vw;
+            height:100vh;
+            background-color:turquoise;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+        }
+        h1{
+            color:red;
+            text-shadow: 0 2px 5px;
+        }
+
+        h1::before{
+            content:"The ";
+        }
+        h1::after{
+            content:" Thapa";
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main-div">
+        <h1>Sunny</h1>
+    </div>
+</body>
+</html>
