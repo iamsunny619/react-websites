@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main_div">
+        <div class="music_conatainer">
+            <h2>iamsunny619</h2>
+            <h3>Anny</h3>
+            <div class="img_conatiner">
+                <img src="images/img-1.jpeg" alt="Image">
+            </div>
+            <audio src="music/music-1.mp3" ></audio>
+            <!-- to controll all music -->
+            <div class="music_controls">
+                <i class="fas fa-backward space_btwn" id="prev" title="Previous"></i>
+                <i class="fas fa-play space_btwn" id="play" title="Play"></i>
+                <i class="fas fa-forward space_btwn" id="next" title="Next"></i>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        const music = document.querySelector("audio");
+        const img = document.querySelector("img");
+        const title = document.querySelector("h3");
+        const play = document.getElementById("play");
+        const previous = document.getElementById("prev");
+        const next = document.getElementById("next");
+       
+        isSongPlaying= false;
+        songIndex=0;    
+        const dataModel = [
+            {
+                title : "Ankit",
+                img : "img-1",
+                song: "music-1"
+            },
+            {
+                title : "Anny",
+                img : "img-2",
+                song: "music-2"
+            },
+            {
+                title : "Sunny",
+                img : "img-3",
+                song: "music-3"
+            }
+        ]
+    
+        function playMusic(){
+            music.play();
+            isSongPlaying=true;
+            play.classList.replace("fa-play","fa-pause");
+            //img.add animation to raoteate. 
+        }
+
+       const pauseMusic=()=>{
+            music.pause();
+            isSongPlaying=false;
+            play.classList.replace("fa-pause","fa-play");
+        }
+
+        play.addEventListener('click',()=>{
+            isSongPlaying?pauseMusic():playMusic();
+        })
+
+        const loadSong = (song) =>{
+            title.textContent=song.title;
+            img.src="images/" + song.img +".jpeg";
+            music.src="music/"+song.song + ".mp3";
+        };
+
+        const nextSong = () =>{
+            songIndex = (songIndex + 1 )% dataModel.length;
+            loadSong(dataModel[songIndex]);
+            playMusic();
+        }
+        const prevSong = () =>{
+            songIndex = (songIndex - 1 + dataModel.length)% dataModel.length;
+            loadSong(dataModel[songIndex]);
+            playMusic();
+        }
+
+        next.addEventListener('click', nextSong);
+        prev.addEventListener('click', prevSong);
+    
+        
+    </script>
+</body>
+</html>
